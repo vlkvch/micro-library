@@ -1,0 +1,57 @@
+services:
+  book-service:
+    image: book-service
+    build:
+      context: ./book-service
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=jdbc:postgresql://book-db:5432/postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+    networks:
+      - book-net
+      - services-net
+    ports:
+      - "8080:8080"
+    depends_on:
+      - book-db
+
+  library-service:
+    image: library-service
+    build:
+      context: ./library-service
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=jdbc:postgresql://library-db:5432/postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+    networks:
+      - library-net
+      - services-net
+    ports:
+      - "8081:8081"
+    depends_on:
+      - library-db
+
+  book-db:
+    image: postgres:16.4-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - book-net
+    ports:
+      - "5432:5432"
+
+  library-db:
+    image: postgres:16.4-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - library-net
+    ports:
+      - "5433:5432"
+
+networks:
+  services-net:
+  book-net:
+  library-net:
