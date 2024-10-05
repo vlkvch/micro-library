@@ -28,7 +28,7 @@ public class Book {
      */
     @Column(unique = true)
     @NotNull(message = "The ISBN must not be null.")
-    @Pattern(regexp = "(?=(?:[^0-9]*[0-9]){10}(?:(?:[^0-9]*[0-9]){3})?$)[\\d-]+")
+    @Pattern(regexp = "(?=(?:[^0-9]*[0-9]){10}(?:(?:[^0-9]*[0-9]){3})?$)[\\d-]+", message = "Must be a valid ISBN.")
     private String isbn;
 
     /**
