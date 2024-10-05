@@ -10,6 +10,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     /**
+     * Handles {@link BookAlreadyExistsException}.
+     */
+    @ExceptionHandler(BookAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleBookAlreadyExists(BookAlreadyExistsException e) {
+        ErrorResponse resp = ErrorMapper.INSTANCE.toErrorResponse(e);
+        return ResponseEntity.status(resp.getStatus()).body(resp);
+    }
+
+    /**
      * Handles {@link BookNotFoundException}.
      */
     @ExceptionHandler(BookNotFoundException.class)
