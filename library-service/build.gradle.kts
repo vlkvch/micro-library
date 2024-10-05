@@ -1,5 +1,5 @@
 group = "org.example"
-version = "0.0.1-SNAPSHOT"
+version = "0.1.0"
 
 val springBootVersion by extra("3.3.4")
 val lombokVersion by extra("1.18.34")

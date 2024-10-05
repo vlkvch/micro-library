@@ -1,5 +1,5 @@
 group = "org.example"
-version = "0.0.1-SNAPSHOT"
+version = "0.1.0"
 
 val lombokVersion by extra("1.18.34")
 val mapstructVersion by extra("1.6.2")
