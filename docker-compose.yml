@@ -1,4 +1,13 @@
 services:
+  service-registry:
+    image: service-registry
+    build:
+      context: ./service-registry
+      dockerfile: Dockerfile
+    networks:
+      - services-net
+    ports:
+      - "8081:8081"
   book-service:
     image: book-service
     build:
