@@ -11,6 +11,6 @@ FROM gcr.io/distroless/java21:nonroot
 
 COPY --from=build /usr/src/book-service/build/libs/book-service-0.1.0.jar /home/nonroot/book-service.jar
 
-EXPOSE 8080
+EXPOSE 8082
 
-ENTRYPOINT ["java", "-jar", "/home/nonroot/book-service.jar"]
+ENTRYPOINT ["java", "-jar", "book-service.jar"]

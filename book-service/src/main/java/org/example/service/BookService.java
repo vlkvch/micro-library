@@ -7,10 +7,12 @@ import org.example.client.LibraryClient;
 import org.example.dto.BookRequest;
 import org.example.dto.BookResponse;
 import org.example.entity.Book;
+import org.example.exception.BookAlreadyExistsException;
 import org.example.exception.BookNotFoundException;
 import org.example.mapper.BookMapper;
 import org.example.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -73,7 +75,13 @@ public class BookService {
      * @return added book
      */
     public BookResponse add(BookRequest bookReq) {
-        Book book = bookRepo.save(BookMapper.INSTANCE.toBook(bookReq));
+        Book book;
+
+        try {
+            book = bookRepo.save(BookMapper.INSTANCE.toBook(bookReq));
+        } catch (DataIntegrityViolationException e) {
+            throw new BookAlreadyExistsException(bookReq.getIsbn());
+        }
 
         libraryClient.add(BookMapper.INSTANCE.toLibraryBookRequest(book));
 
@@ -97,7 +105,14 @@ public class BookService {
                     book.setGenre(updatedBook.getGenre());
                     book.setDescription(updatedBook.getDescription());
                     book.setAuthor(updatedBook.getAuthor());
-                    return bookRepo.save(book);
+
+                    try {
+                        bookRepo.save(book);
+                    } catch (DataIntegrityViolationException e) {
+                        throw new BookAlreadyExistsException(updatedBook.getIsbn());
+                    }
+
+                    return book;
                 })
                 .orElseThrow(() -> new BookNotFoundException(id))
         );
