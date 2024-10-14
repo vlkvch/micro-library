@@ -13,4 +13,4 @@ COPY --from=build /usr/src/book-service/build/libs/book-service-0.1.0.jar /home/
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/home/nonroot/book-service.jar"]
+ENTRYPOINT ["java", "-jar", "book-service.jar"]

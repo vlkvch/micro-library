@@ -13,4 +13,4 @@ COPY --from=build /usr/src/library-service/build/libs/library-service-0.1.0.jar 
 
 EXPOSE 8081
 
-ENTRYPOINT ["java", "-jar", "/home/nonroot/library-service.jar"]
+ENTRYPOINT ["java", "-jar", "library-service.jar"]
