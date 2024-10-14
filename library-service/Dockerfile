@@ -11,6 +11,6 @@ FROM gcr.io/distroless/java21:nonroot
 
 COPY --from=build /usr/src/library-service/build/libs/library-service-0.1.0.jar /home/nonroot/library-service.jar
 
-EXPOSE 8081
+EXPOSE 8083
 
 ENTRYPOINT ["java", "-jar", "library-service.jar"]
