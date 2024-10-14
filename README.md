@@ -7,17 +7,17 @@
 При помощи Docker Compose:
 
 ```
-$ docker compose up book-db -d
-$ docker compose up library-db -d
-$ docker compose up book-service -d
-$ docker compose up library-service -d
+$ docker compose up -d --build
 ```
 
 ## Документация
 
 Swagger документация доступна на `/api-docs`. Swagger UI — на `/swagger-ui/index.html`.
 
-Порт для `book-service` — 8080, для `library-service` — 8081.
+Микросервисы — `book-service` и `library-service` — доступны через API Gateway, который доступен по `localhost:8080`:
+
+- `localhost:8080/book-service/api-docs`
+- `localhost:8080/library-service/api-docs`
 
 ## Лицензия
 
