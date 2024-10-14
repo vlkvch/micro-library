@@ -1,4 +1,16 @@
 services:
+  api-gateway:
+    image: api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    networks:
+      - services-net
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-registry
+
   service-registry:
     image: service-registry
     build:
