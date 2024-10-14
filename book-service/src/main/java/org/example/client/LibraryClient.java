@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "library-service", url = "http://library-service:8081/library")
+@FeignClient(name = "library-service", url = "http://api-gateway:8080/library-service/library")
 public interface LibraryClient {
 
     /**
