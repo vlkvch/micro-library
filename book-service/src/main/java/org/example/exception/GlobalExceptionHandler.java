@@ -11,6 +11,9 @@ public class GlobalExceptionHandler {
 
     /**
      * Handles {@link BookAlreadyExistsException}.
+     *
+     * @param e an object of the {@link BookAlreadyExistsException} class
+     * @return a {@link ResponseEntity} with {@link ErrorResponse} as a body
      */
     @ExceptionHandler(BookAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleBookAlreadyExists(BookAlreadyExistsException e) {
@@ -20,6 +23,9 @@ public class GlobalExceptionHandler {
 
     /**
      * Handles {@link BookNotFoundException}.
+     *
+     * @param e an object of the {@link BookNotFoundException} class
+     * @return a {@link ResponseEntity} with {@link ErrorResponse} as a body
      */
     @ExceptionHandler(BookNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleBookNotFound(BookNotFoundException e) {
