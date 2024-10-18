@@ -1,5 +1,7 @@
 package org.example.service;
 
+import static org.mockito.Mockito.when;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,7 +58,7 @@ class BookServiceTests {
             .author("Brian Goetz")
             .build();
 
-        Mockito.when(bookRepo.findAll()).thenReturn((Iterable<Book>) List.of(b1, b2));
+        when(bookRepo.findAll()).thenReturn((Iterable<Book>) List.of(b1, b2));
 
         Assertions.assertEquals(List.of(BookMapper.INSTANCE.toBookResponse(b1), BookMapper.INSTANCE.toBookResponse(b2)), bookService.getAll());
     }
@@ -72,9 +73,9 @@ class BookServiceTests {
             .author("Andrew Tanenbaum")
             .build();
 
-            Mockito.when(bookRepo.findByIsbn("978-0133591620")).thenReturn(Optional.of(b));
+        when(bookRepo.findByIsbn("978-0133591620")).thenReturn(Optional.of(b));
 
-            Assertions.assertEquals(BookMapper.INSTANCE.toBookResponse(b), bookService.getByIsbn("978-0133591620"));
+        Assertions.assertEquals(BookMapper.INSTANCE.toBookResponse(b), bookService.getByIsbn("978-0133591620"));
     }
 
     @Test
