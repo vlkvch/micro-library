@@ -26,7 +26,7 @@ class BookServiceTests {
     private BookService bookService;
 
     @Test
-    public void getById() {
+    public void test_getById() {
         Book b = Book.builder()
             .id(1)
             .isbn("978-0133591620")
@@ -35,13 +35,13 @@ class BookServiceTests {
             .author("Andrew Tanenbaum")
             .build();
 
-        Mockito.when(bookRepo.findById(Long.valueOf(1))).thenReturn(Optional.of(b));
+        when(bookRepo.findById(Long.valueOf(1))).thenReturn(Optional.of(b));
 
         Assertions.assertEquals(BookMapper.INSTANCE.toBookResponse(b), bookService.getById(1));
     }
 
     @Test
-    public void getAll() {
+    public void test_getAll() {
         Book b1 = Book.builder()
             .id(1)
             .isbn("978-0133591620")
@@ -64,7 +64,7 @@ class BookServiceTests {
     }
 
     @Test
-    public void getByIsbn() {
+    public void test_getByIsbn() {
         Book b = Book.builder()
             .id(1)
             .isbn("978-0133591620")
@@ -79,12 +79,12 @@ class BookServiceTests {
     }
 
     @Test
-    public void getById_throwsBookNotFound() {
+    public void test_getById_throwsBookNotFound() {
         Assertions.assertThrows(BookNotFoundException.class, () -> bookService.getById(1));
     }
 
     @Test
-    public void getByIsbn_throwsBookNotFound() {
+    public void test_getByIsbn_throwsBookNotFound() {
         Assertions.assertThrows(BookNotFoundException.class, () -> bookService.getByIsbn("978-0133591620"));
     }
 
