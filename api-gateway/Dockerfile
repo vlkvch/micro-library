@@ -9,7 +9,7 @@ RUN --mount=type=cache,target=/root/.gradle gradle clean build
 
 FROM gcr.io/distroless/java21:nonroot
 
-COPY --from=build /usr/src/api-gateway/build/libs/api-gateway-0.1.0.jar /home/nonroot/api-gateway.jar
+COPY --from=build /usr/src/api-gateway/build/libs/api-gateway-0.3.0.jar /home/nonroot/api-gateway.jar
 
 EXPOSE 8080
 

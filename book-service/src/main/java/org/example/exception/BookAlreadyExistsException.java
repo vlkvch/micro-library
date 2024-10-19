@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class BookAlreadyExistsException extends RuntimeException {
 
     public BookAlreadyExistsException(String isbn) {
-        super("a book with the ISBN " + isbn + " already exists");
+        super("A book with the ISBN of " + isbn + " already exists");
     }
 
 }
