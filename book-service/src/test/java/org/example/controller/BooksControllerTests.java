@@ -139,4 +139,35 @@ public class BooksControllerTests {
             .andExpect(jsonPath(".id").value(1));
     }
 
+    @Test
+    public void test_add_returnsErrorResponse() throws Exception {
+        BookRequest bookReq = new BookRequest();
+        bookReq.setIsbn("978-0133591620");
+        bookReq.setTitle("Modern Operating Systems");
+        bookReq.setDescription("A comprehensive textbook that explores the principles, design, and implementation of operating systems, covering topics such as process management, memory management, file systems, and security in a clear and accessible manner.");
+        bookReq.setGenre("Technical literature");
+        bookReq.setAuthor("Andrew Tanenbaum");
+
+        Book b = BookMapper.INSTANCE.toBook(bookReq);
+        b.setId(1);
+
+        when(bookService.add(bookReq))
+            .thenReturn(BookMapper.INSTANCE.toBookResponse(b))
+            .thenThrow(BookAlreadyExistsException.class);
+
+        mvc.perform(post("/books")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(jsonMapper.writeValueAsString(bookReq)))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath(".isbn").value("978-0133591620"))
+            .andExpect(jsonPath(".id").value(1));
+
+        mvc.perform(post("/books")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(jsonMapper.writeValueAsString(bookReq)))
+            .andExpect(status().is4xxClientError())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
 }
