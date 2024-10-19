@@ -69,6 +69,7 @@ public class BookRepositoryTests {
 
         assertThat(books).isNotEmpty();
         assertThat(books).extracting(Book::getIsbn).contains("978-0321349606");
+        assertThat(books).hasSize(2);
     }
 
     @Test
