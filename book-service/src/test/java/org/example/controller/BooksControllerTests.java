@@ -87,6 +87,15 @@ public class BooksControllerTests {
     }
 
     @Test
+    public void test_getById_returnsErrorResponse() throws Exception {
+        when(bookService.getById(1)).thenThrow(BookNotFoundException.class);
+
+        mvc.perform(get("/books/1"))
+            .andExpect(status().isNotFound())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
     public void test_getByIsbn() throws Exception {
         BookResponse b1 = BookMapper.INSTANCE.toBookResponse(Book.builder()
             .id(1)
