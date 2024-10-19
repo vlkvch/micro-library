@@ -1,5 +1,5 @@
 group = "org.example"
-version = "0.1.0"
+version = "0.3.0"
 
 extra["lombokVersion"] = "1.18.34"
 extra["mapstructVersion"] = "1.6.2"

@@ -9,7 +9,7 @@ RUN --mount=type=cache,target=/root/.gradle gradle clean build
 
 FROM gcr.io/distroless/java21:nonroot
 
-COPY --from=build /usr/src/service-registry/build/libs/service-registry-0.1.0.jar /home/nonroot/service-registry.jar
+COPY --from=build /usr/src/service-registry/build/libs/service-registry-0.3.0.jar /home/nonroot/service-registry.jar
 
 EXPOSE 8081
 
