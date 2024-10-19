@@ -39,8 +39,8 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:${property("mapstructVersion")}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.projectreactor:reactor-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("io.projectreactor:reactor-test")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("com.h2database:h2")
 }
 
