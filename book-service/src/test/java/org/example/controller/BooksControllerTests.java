@@ -12,6 +12,8 @@ import java.util.List;
 import org.example.dto.BookRequest;
 import org.example.dto.BookResponse;
 import org.example.entity.Book;
+import org.example.exception.BookAlreadyExistsException;
+import org.example.exception.BookNotFoundException;
 import org.example.mapper.BookMapper;
 import org.example.service.BookService;
 import org.junit.jupiter.api.Test;
