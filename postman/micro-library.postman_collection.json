@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "f71c9a0d-9aea-4d07-90eb-418e62feb605",
+		"name": "micro-library",
+		"description": "Набор микросервисов для имитации библиотеки.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39062620"
+	},
+	"item": [
+		{
+			"name": "book-service",
+			"item": [
+				{
+					"name": "http://localhost:8080/book-service/books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/book-service/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books"
+							]
+						},
+						"description": "Get all the books from book-service."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-0133591620\",\r\n    \"title\": \"Modern Operating Systems\",\r\n    \"description\": \"A comprehensive textbook that explores the principles...\",\r\n    \"genre\": \"Technical literature\",\r\n    \"author\": \"Andrew Tanenbaum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/book-service/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books"
+							]
+						},
+						"description": "Add a book to book-service."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-7-536-69293-0\",\r\n    \"title\": \"The Three-Body Problem\",\r\n    \"description\": \"\\\"The Three-Body Problem\\\" is a science fiction novel by Chinese author Liu Cixin...\",\r\n    \"genre\": \"Science Fiction\",\r\n    \"author\": \"Liu Cixin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/book-service/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books"
+							]
+						},
+						"description": "Add a book to book-service."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books/2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/book-service/books/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books",
+								"2"
+							]
+						},
+						"description": "Get the book with ID 2."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books/978-0133591620",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/book-service/books/978-0133591620",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books",
+								"978-0133591620"
+							]
+						},
+						"description": "Get a book by its ISBN."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books/5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/book-service/books/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books",
+								"5"
+							]
+						},
+						"description": "Get a book which does not exist."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/book-service/books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books",
+								"1"
+							]
+						},
+						"description": "Delete a book from book-service."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books/2",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-7-536-69293-0\",\r\n    \"title\": \"The Three-Body Problem\",\r\n    \"description\": \"Description...\",\r\n    \"genre\": \"Science Fiction\",\r\n    \"author\": \"Liu Cixin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/book-service/books/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books",
+								"2"
+							]
+						},
+						"description": "Update a book."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/book-service/books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-7-536-69293-0\",\r\n    \"title\": \"The Three-Body Problem\",\r\n    \"description\": \"\\\"The Three-Body Problem\\\" is a science fiction novel by Chinese author Liu Cixin...\",\r\n    \"genre\": \"Science Fiction\",\r\n    \"author\": \"Liu Cixin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/book-service/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-service",
+								"books"
+							]
+						},
+						"description": "Try to create a book which already exists."
+					},
+					"response": []
+				}
+			],
+			"description": "HTTP requests for book-service."
+		},
+		{
+			"name": "library-service",
+			"item": [
+				{
+					"name": "http://localhost:8080/library-service/library",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/library-service/library",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"library-service",
+								"library"
+							]
+						},
+						"description": "Get all the books from library-service."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/library-service/library/4",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/library-service/library/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"library-service",
+								"library",
+								"4"
+							]
+						},
+						"description": "Get a book which does not exist."
+					},
+					"response": []
+				}
+			],
+			"description": "HTTP requests for library-service."
+		}
+	]
+}

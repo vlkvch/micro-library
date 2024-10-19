@@ -19,6 +19,10 @@ Swagger документация доступна на `/api-docs`. Swagger UI �
 - `localhost:8080/book-service/api-docs`
 - `localhost:8080/library-service/api-docs`
 
+## Тестирование
+
+Postman коллекция доступна в папке `postman`.
+
 ## Лицензия
 
 MIT

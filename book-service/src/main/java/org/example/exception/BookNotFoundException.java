@@ -10,14 +10,14 @@ public class BookNotFoundException extends RuntimeException {
      * Exception which is thrown if a book with a specified ID has not been found.
      */
     public BookNotFoundException(long id) {
-        super("could not find a book with ID " + id);
+        super("Could not find a book with ID " + id);
     }
 
     /**
      * Exception which is thrown if a book with a specified ISBN has not been found.
      */
     public BookNotFoundException(String isbn) {
-        super("could not find a book with ISBN " + isbn);
+        super("Could not find a book with ISBN of " + isbn);
     }
 
 }
