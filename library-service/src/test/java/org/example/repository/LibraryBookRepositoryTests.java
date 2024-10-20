@@ -29,34 +29,34 @@ public class LibraryBookRepositoryTests {
     public void setUp() {
         LocalDate now = LocalDate.of(2024, 10, 19);
 
-        LibraryBook b = LibraryBook.builder()
+        LibraryBook book = LibraryBook.builder()
             .id(1)
             .borrowedDate(now)
             .returnDate(now.plusWeeks(1))
             .build();
 
-        entityManager.persistAndFlush(b);
+        entityManager.persistAndFlush(book);
     }
 
     @Test
     public void test_findById() {
-        Optional<LibraryBook> b = libraryBookRepo.findById(Long.valueOf(1));
+        Optional<LibraryBook> book = libraryBookRepo.findById(Long.valueOf(1));
 
-        assertTrue(b.isPresent());
-        assertEquals(b.get().getId(), 1);
+        assertTrue(book.isPresent());
+        assertEquals(book.get().getId(), 1);
     }
 
     @Test
     public void test_findAll() {
         LocalDate now = LocalDate.now();
 
-        LibraryBook b = LibraryBook.builder()
+        LibraryBook book = LibraryBook.builder()
             .id(2)
             .borrowedDate(now)
             .returnDate(now.plusWeeks(2))
             .build();
 
-        entityManager.persistAndFlush(b);
+        entityManager.persistAndFlush(book);
 
         Iterable<LibraryBook> libraryBooks = libraryBookRepo.findAll();
 
@@ -66,18 +66,18 @@ public class LibraryBookRepositoryTests {
 
     @Test
     public void test_update() {
-        LibraryBook updated = libraryBookRepo.findById(Long.valueOf(1)).get();
-        updated.setBorrowedDate(null);
-        updated.setReturnDate(null);
+        LibraryBook updatedBook = libraryBookRepo.findById(Long.valueOf(1)).get();
+        updatedBook.setBorrowedDate(null);
+        updatedBook.setReturnDate(null);
 
-        assertEquals(libraryBookRepo.save(updated).getBorrowedDate(), null);
+        assertEquals(libraryBookRepo.save(updatedBook).getBorrowedDate(), null);
     }
 
     @Test
     public void test_findByIdNonExistent() {
-        Optional<LibraryBook> b = libraryBookRepo.findById(Long.valueOf(2));
+        Optional<LibraryBook> book = libraryBookRepo.findById(Long.valueOf(2));
 
-        assertTrue(b.isEmpty());
+        assertTrue(book.isEmpty());
     }
 
 }
