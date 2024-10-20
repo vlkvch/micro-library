@@ -112,8 +112,6 @@ public class BookService {
                         throw new BookAlreadyExistsException(updatedBook.getIsbn());
                     }
 
-                    libraryClient.update(id, BookMapper.INSTANCE.toLibraryBookRequest(book));
-
                     return book;
                 })
                 .orElseThrow(() -> new BookNotFoundException(id))
