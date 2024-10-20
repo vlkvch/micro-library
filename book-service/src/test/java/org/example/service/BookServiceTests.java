@@ -27,7 +27,7 @@ class BookServiceTests {
 
     @Test
     public void test_getById() {
-        Book b = Book.builder()
+        Book book = Book.builder()
             .id(1)
             .isbn("978-0133591620")
             .title("Modern Operating Systems")
@@ -35,14 +35,14 @@ class BookServiceTests {
             .author("Andrew Tanenbaum")
             .build();
 
-        when(bookRepo.findById(Long.valueOf(1))).thenReturn(Optional.of(b));
+        when(bookRepo.findById(Long.valueOf(1))).thenReturn(Optional.of(book));
 
-        Assertions.assertEquals(BookMapper.INSTANCE.toBookResponse(b), bookService.getById(1));
+        Assertions.assertEquals(BookMapper.INSTANCE.toBookResponse(book), bookService.getById(1));
     }
 
     @Test
     public void test_getAll() {
-        Book b1 = Book.builder()
+        Book book1 = Book.builder()
             .id(1)
             .isbn("978-0133591620")
             .title("Modern Operating Systems")
@@ -50,7 +50,7 @@ class BookServiceTests {
             .author("Andrew Tanenbaum")
             .build();
 
-        Book b2 = Book.builder()
+        Book book2 = Book.builder()
             .id(2)
             .isbn("978-0321349606")
             .title("Java Concurrency in Practice")
@@ -58,14 +58,14 @@ class BookServiceTests {
             .author("Brian Goetz")
             .build();
 
-        when(bookRepo.findAll()).thenReturn((Iterable<Book>) List.of(b1, b2));
+        when(bookRepo.findAll()).thenReturn((Iterable<Book>) List.of(book1, book2));
 
-        Assertions.assertEquals(List.of(BookMapper.INSTANCE.toBookResponse(b1), BookMapper.INSTANCE.toBookResponse(b2)), bookService.getAll());
+        Assertions.assertEquals(List.of(BookMapper.INSTANCE.toBookResponse(book1), BookMapper.INSTANCE.toBookResponse(book2)), bookService.getAll());
     }
 
     @Test
     public void test_getByIsbn() {
-        Book b = Book.builder()
+        Book book = Book.builder()
             .id(1)
             .isbn("978-0133591620")
             .title("Modern Operating Systems")
@@ -73,9 +73,9 @@ class BookServiceTests {
             .author("Andrew Tanenbaum")
             .build();
 
-        when(bookRepo.findByIsbn("978-0133591620")).thenReturn(Optional.of(b));
+        when(bookRepo.findByIsbn("978-0133591620")).thenReturn(Optional.of(book));
 
-        Assertions.assertEquals(BookMapper.INSTANCE.toBookResponse(b), bookService.getByIsbn("978-0133591620"));
+        Assertions.assertEquals(BookMapper.INSTANCE.toBookResponse(book), bookService.getByIsbn("978-0133591620"));
     }
 
     @Test
