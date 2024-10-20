@@ -73,12 +73,12 @@ public class LibraryControllerTests {
         BookRequest bookReq = new BookRequest();
         bookReq.setId(1);
 
-        LibraryBook b = LibraryBookMapper.INSTANCE.toLibraryBook(bookReq);
+        LibraryBook book = LibraryBookMapper.INSTANCE.toLibraryBook(bookReq);
         LocalDate now = LocalDate.of(2024, 10, 19);
-        b.setBorrowedDate(now);
-        b.setReturnDate(now.plusWeeks(1));
+        book.setBorrowedDate(now);
+        book.setReturnDate(now.plusWeeks(1));
 
-        LibraryBookResponse libraryBookResp = LibraryBookMapper.INSTANCE.toLibraryBookResponse(b);
+        LibraryBookResponse libraryBookResp = LibraryBookMapper.INSTANCE.toLibraryBookResponse(book);
 
         when(libraryService.add(bookReq)).thenReturn(libraryBookResp);
 

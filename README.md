@@ -6,7 +6,7 @@
 
 При помощи Docker Compose:
 
-```
+```shell
 $ docker compose up -d --build
 ```
 
