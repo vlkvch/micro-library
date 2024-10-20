@@ -39,23 +39,23 @@ public class BookRepositoryTests {
 
     @Test
     public void test_findById() {
-        Optional<Book> b = bookRepo.findById(Long.valueOf(1));
+        Optional<Book> book = bookRepo.findById(Long.valueOf(1));
 
-        assertTrue(b.isPresent());
-        assertEquals(b.get().getId(), 1);
+        assertTrue(book.isPresent());
+        assertEquals(book.get().getId(), 1);
     }
 
     @Test
     public void test_findByIsbn() {
-        Optional<Book> b = bookRepo.findByIsbn("978-0321349606");
+        Optional<Book> book = bookRepo.findByIsbn("978-0321349606");
 
-        assertTrue(b.isPresent());
-        assertEquals(b.get().getIsbn(), "978-0321349606");
+        assertTrue(book.isPresent());
+        assertEquals(book.get().getIsbn(), "978-0321349606");
     }
 
     @Test
     public void test_findAll() {
-        Book b = Book.builder()
+        Book book = Book.builder()
             .isbn("978-0133591620")
             .title("Modern Operating Systems")
             .description("A comprehensive textbook that explores the principles, design, and implementation of operating systems, covering topics such as process management, memory management, file systems, and security in a clear and accessible manner.")
@@ -63,7 +63,7 @@ public class BookRepositoryTests {
             .author("Andrew Tanenbaum")
             .build();
 
-        testEntityManager.persistAndFlush(b);
+        testEntityManager.persistAndFlush(book);
 
         Iterable<Book> books = bookRepo.findAll();
 
@@ -83,9 +83,9 @@ public class BookRepositoryTests {
 
     @Test
     public void test_findByIdNonExistent() {
-        Optional<Book> b = bookRepo.findById(Long.valueOf(3));
+        Optional<Book> book = bookRepo.findById(Long.valueOf(3));
 
-        assertTrue(b.isEmpty());
+        assertTrue(book.isEmpty());
     }
 
 }

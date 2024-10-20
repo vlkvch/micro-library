@@ -37,11 +37,12 @@ public class BooksControllerTests {
     @MockBean
     private BookService bookService;
 
-    private ObjectMapper jsonMapper = new ObjectMapper();
+    @Autowired
+    private ObjectMapper jsonMapper;
 
     @Test
     public void test_all() throws Exception {
-        BookResponse b1 = BookMapper.INSTANCE.toBookResponse(Book.builder()
+        BookResponse bookResp1 = BookMapper.INSTANCE.toBookResponse(Book.builder()
             .id(1)
             .isbn("978-0133591620")
             .title("Modern Operating Systems")
@@ -51,7 +52,7 @@ public class BooksControllerTests {
             .build()
         );
 
-        BookResponse b2 = BookMapper.INSTANCE.toBookResponse(Book.builder()
+        BookResponse bookResp2 = BookMapper.INSTANCE.toBookResponse(Book.builder()
             .id(2)
             .isbn("978-0321349606")
             .title("Java Concurrency in Practice")
@@ -61,7 +62,7 @@ public class BooksControllerTests {
             .build()
         );
 
-        when(bookService.getAll()).thenReturn(List.of(b1, b2));
+        when(bookService.getAll()).thenReturn(List.of(bookResp1, bookResp2));
 
         mvc.perform(get("/books"))
             .andExpect(status().isOk())
@@ -70,7 +71,7 @@ public class BooksControllerTests {
 
     @Test
     public void test_getById() throws Exception {
-        BookResponse b1 = BookMapper.INSTANCE.toBookResponse(Book.builder()
+        BookResponse bookResp = BookMapper.INSTANCE.toBookResponse(Book.builder()
             .id(1)
             .isbn("978-0133591620")
             .title("Modern Operating Systems")
@@ -80,7 +81,7 @@ public class BooksControllerTests {
             .build()
         );
 
-        when(bookService.getById(1)).thenReturn(b1);
+        when(bookService.getById(1)).thenReturn(bookResp);
 
         mvc.perform(get("/books/1"))
             .andExpect(status().isOk())
@@ -99,7 +100,7 @@ public class BooksControllerTests {
 
     @Test
     public void test_getByIsbn() throws Exception {
-        BookResponse b1 = BookMapper.INSTANCE.toBookResponse(Book.builder()
+        BookResponse bookResp = BookMapper.INSTANCE.toBookResponse(Book.builder()
             .id(1)
             .isbn("978-0133591620")
             .title("Modern Operating Systems")
@@ -109,7 +110,7 @@ public class BooksControllerTests {
             .build()
         );
 
-        when(bookService.getByIsbn("978-0133591620")).thenReturn(b1);
+        when(bookService.getByIsbn("978-0133591620")).thenReturn(bookResp);
 
         mvc.perform(get("/books/978-0133591620"))
             .andExpect(status().isOk())
@@ -127,10 +128,10 @@ public class BooksControllerTests {
         bookReq.setGenre("Technical literature");
         bookReq.setAuthor("Andrew Tanenbaum");
 
-        Book b = BookMapper.INSTANCE.toBook(bookReq);
-        b.setId(1);
+        Book book = BookMapper.INSTANCE.toBook(bookReq);
+        book.setId(1);
 
-        when(bookService.add(bookReq)).thenReturn(BookMapper.INSTANCE.toBookResponse(b));
+        when(bookService.add(bookReq)).thenReturn(BookMapper.INSTANCE.toBookResponse(book));
 
         mvc.perform(post("/books")
             .contentType(MediaType.APPLICATION_JSON)
@@ -150,11 +151,11 @@ public class BooksControllerTests {
         bookReq.setGenre("Technical literature");
         bookReq.setAuthor("Andrew Tanenbaum");
 
-        Book b = BookMapper.INSTANCE.toBook(bookReq);
-        b.setId(1);
+        Book book = BookMapper.INSTANCE.toBook(bookReq);
+        book.setId(1);
 
         when(bookService.add(bookReq))
-            .thenReturn(BookMapper.INSTANCE.toBookResponse(b))
+            .thenReturn(BookMapper.INSTANCE.toBookResponse(book))
             .thenThrow(BookAlreadyExistsException.class);
 
         mvc.perform(post("/books")
